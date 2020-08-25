@@ -10,6 +10,13 @@ boolean check;
 Ball[] balls;
 Ball[] deleteBall;
 
+void undoClick(){
+  for(int i=0; i < deleteBall.length; i++){
+    int index = balls.length;
+    balls[index] = deleteBall[i];
+  }
+}
+
 class Ball {
   float position_x, position_y;
   int size;
@@ -30,13 +37,6 @@ class Ball {
   float getArea() {
     float area = 22/7 * (size/2) * (size/2);
     return area;
-  }
-  
-  void undoClick(){
-    for(int i=0; i < deleteBall.length; i++){
-      int index = balls.length;
-      balls[index] = deleteBall[i];
-    }
   }
 }
 
@@ -84,4 +84,7 @@ void mouseClicked() {
     }
   }
   
+  if (180 <= mouseX && mouseX <= 260 && 320 <= mouseY && mouseY <= 350){
+    undoClick(); // when click undo button
+  }
 }
